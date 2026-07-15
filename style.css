@@ -1,0 +1,113 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.navbar .logo { font-size: 20px; font-weight: bold; }
+.navbar nav a { text-decoration: none; color: #555; margin-left: 20px; font-weight: 500; }
+.container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+h1 { text-align: center; margin-bottom: 40px; }
+
+/* La Grille Responsive */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Le Design des Cartes */
+.card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s;
+}
+.card:hover { transform: translateY(-5px); }
+.card-image img { width: 100%; height: 200px; object-fit: cover; }
+.card-body { padding: 20px; flex-grow: 1; }
+.category { font-size: 11px; text-transform: uppercase; color: #007bff; font-weight: bold; letter-spacing: 1px; }
+.card-body h3 { margin: 10px 0; font-size: 18px; }
+.description { font-size: 14px; color: #666; line-height: 1.4; }
+.card-footer { padding: 20px; border-top: 1px solid #f1f1f1; background: #fafafa; }
+.price { font-size: 22px; font-weight: bold; color: #28a745; margin-bottom: 10px; }
+.stock {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 15px;
+    border-radius: 999px;
+    padding: 7px 12px;
+}
+.stock-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.stock-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 800;
+}
+.in-stock {
+    color: #0f5132;
+    background: #d1e7dd;
+}
+.in-stock .stock-dot { background: #198754; }
+.in-stock .stock-count {
+    background: #198754;
+    color: #fff;
+}
+.out-of-stock {
+    color: #842029;
+    background: #f8d7da;
+}
+.out-of-stock .stock-dot { background: #dc3545; }
+.btn-add {
+    display: block;
+    text-align: center;
+    background: #17a2b8;
+    color: #fff;
+    padding: 10px;
+    border: 0;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-add:hover {
+    background: #138496;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(19, 132, 150, 0.22);
+}
+.btn-disabled,
+.btn-disabled:hover {
+    background: #adb5bd;
+    color: #f8f9fa;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
