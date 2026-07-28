@@ -135,14 +135,60 @@ $produits = [
         "categorie" => "Tablettes"
     ]
 ];
+
+include 'produitsTrier.php';
 ?>
 
 <div class="container">
     <h1>Notre Catalogue Tech</h1>
-    
-    <div class="products-grid">
-        <?php foreach ($produits as $produit): ?>
-            <?php include 'vues/templates/product.php'; ?>
-        <?php endforeach; ?>
+
+    <div class="catalog-layout">
+        <aside class="filters-panel">
+            <h2>Filtres</h2>
+            <form method="get" action="index.php" class="filters-form">
+                <label for="categorie">Categorie</label>
+                <select name="categorie" id="categorie">
+                    <option value="">Toutes les categories</option>
+                    <?php foreach ($categories as $categorie): ?>
+                        <option value="<?= htmlspecialchars($categorie, ENT_QUOTES, 'UTF-8') ?>" <?= $categorieSelectionnee === $categorie ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($categorie, ENT_QUOTES, 'UTF-8') ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+
+                <label for="stock">Disponibilite</label>
+                <select name="stock" id="stock">
+                    <option value="all" <?= $stockSelectionne === 'all' ? 'selected' : '' ?>>Tous</option>
+                    <option value="in" <?= $stockSelectionne === 'in' ? 'selected' : '' ?>>En stock</option>
+                    <option value="out" <?= $stockSelectionne === 'out' ? 'selected' : '' ?>>Rupture</option>
+                </select>
+
+                <label for="tri">Trier par</label>
+                <select name="tri" id="tri">
+                    <option value="prix_asc" <?= $triSelectionne === 'prix_asc' ? 'selected' : '' ?>>Prix croissant</option>
+                    <option value="prix_desc" <?= $triSelectionne === 'prix_desc' ? 'selected' : '' ?>>Prix decroissant</option>
+                    <option value="nom_asc" <?= $triSelectionne === 'nom_asc' ? 'selected' : '' ?>>Nom A-Z</option>
+                    <option value="nom_desc" <?= $triSelectionne === 'nom_desc' ? 'selected' : '' ?>>Nom Z-A</option>
+                </select>
+
+                <div class="filters-actions">
+                    <button type="submit" class="btn-add">Appliquer</button>
+                    <a href="index.php" class="filters-reset">Reinitialiser</a>
+                </div>
+            </form>
+        </aside>
+
+        <section>
+            <p class="filters-result"><?= count($produitsFiltres) ?> produit(s) trouve(s)</p>
+            <div class="products-grid">
+                <?php foreach ($produitsFiltres as $produit): ?>
+                    <?php include 'vues/templates/product.php'; ?>
+                <?php endforeach; ?>
+            </div>
+
+            <?php if (count($produitsFiltres) === 0): ?>
+                <p class="filters-empty">Aucun produit ne correspond a vos filtres.</p>
+            <?php endif; ?>
+        </section>
     </div>
 </div>

@@ -6,6 +6,5 @@ include 'header.php';
 include 'home.php';
 
 // 3. On ferme proprement les balises HTML ouvertes dans le header
+include 'footer.php';
 ?>
-</body>
-</html>
